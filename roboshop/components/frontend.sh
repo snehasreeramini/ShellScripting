@@ -15,10 +15,6 @@ else
   exit 1
 fi
 
-
-systemctl enable nginx
-systemctl start nginx
-
 #Let's download the HTDOCS content and deploy under the Nginx path.
 echo -e "\e[36m Downloading Nginx content \e[0m"
 curl -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zip"
