@@ -13,6 +13,9 @@
 Print_Message() {
    echo Hello,
    echo GoodMorning
-   echo Welcome to Devops Training
+   echo Welcome to $1 Training
+   echo "First Argument in function= $1"
 }
- Print_Message
+ Print_Message DevOps
+
+ echo "First Argument in function= $1"
