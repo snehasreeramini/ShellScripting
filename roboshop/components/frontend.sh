@@ -4,7 +4,7 @@ StatCheck() {
 if [$1 -eq 0]; then
   echo  -e "\e[32mSUCCESS\e[0m"
 else
-  echo "\e[32mFAILURE\e[0m"
+  echo "\e[31mFAILURE\e[0m"
   exit 2
 fi
 }
@@ -20,7 +20,7 @@ StatCheck $?
 
 #Let's download the HTDOCS content and deploy under the Nginx path.
 echo -e "\e[36m Downloading Nginx content \e[0m"
-curl -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zip"
+curl -f -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zip"
 StatCheck $?
 
 #Deploy in Nginx Default Location.
@@ -32,11 +32,11 @@ mv frontend-main/* .
 mv static/* .
 rm -rf frontend-master README.md
 mv localhost.conf /etc/nginx/default.d/roboshop.conf
-
 StatCheck $?
 #Finally restart the service once to effect the changes.
+
 echo -e "\e[36m Starting Nginx \e[0m"
 systemctl restart nginx
+StatCheck $?
 systemctl enable nginx
 
-StatCheck $?
