@@ -29,11 +29,18 @@ StatCheck $?
 #Deploy in Nginx Default Location.
 Print "Cleaning Old Nginx Content and extract the downloaded new content "
 rm -rf /usr/share/nginx/html/*
+StatCheck $?
+
 cd /usr/share/nginx/html
-unzip /tmp/frontend.zip
-mv frontend-main/* .
-mv static/* .
+
+Print "Extracting archive"
+unzip /tmp/frontend.zip && mv frontend-main/* .&& mv static/* .
+#logical and tells all commands to be executed
+#local or tells to execute any one of the command
+StatCheck $?
+
 rm -rf frontend-master README.md
+Print "Update Roboshop Configuration"
 mv localhost.conf /etc/nginx/default.d/roboshop.conf
 StatCheck $?
 #Finally restart the service once to effect the changes.
