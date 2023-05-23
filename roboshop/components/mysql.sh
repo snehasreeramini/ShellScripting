@@ -14,6 +14,11 @@ Print"Start MySQL service"
 systemctl enable mysqld &>>${LOG_FILE} && systemctl start mysqld &>>${LOG_FILE}
 StatCheck $?
 
+echo "SET PASSWORD FOR 'root'@'localhost' =  PASSWORD('RoboShop@1');" >/tmp/rootpass.sql
+
+DEFAULT_ROOT_PASSWORD=$(grep 'tempprary password' /var/log/mysqld.log | awk '{print $NF}')
+mysql -uroot -p"${DEFAULT_ROOT_PASSWORD}" </tmp/rootpass.sql
+
 #Setup MySQL Repo
 ## echo '[mysql57-community]
 #name=MySQL 5.7 Community Server
