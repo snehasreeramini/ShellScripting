@@ -26,10 +26,13 @@ StatCheck $?
 
 rm -rf frontend-master README.md
 
-Print "Update Roboshop Configuration"&>>$LOG_FILE
-sed -i -e 'catalogue/s/localhost/catalogue.roboshop.internal/' #SEARCH FOR CATATLOGUE AND SUBSTITUTE CATALOGUE.ROBOSHOP.INTERNAL AT CATALOGUE PLACE IN /ETC LOCATION.
-etc/nginx/default.d/roboshop.conf
+Print "Update Roboshop Configuration"&>>${LOG_FILE}
+mv localhost.conf /etc/nginx/default.d/roboshop.conf
+for component in catalogue user cart ; do
+  echo -e "Updating $component configuration"
+sed -i -e '${component}/s/localhost/${component}.roboshopinternal/' #SEARCH FOR CATATLOGUE AND SUBSTITUTE CATALOGUE.ROBOSHOPINTERNAL AT CATALOGUE PLACE IN /ETC LOCATION.
 StatCheck $?
+done
 #Finally restart the service once to effect the changes.
 
 Print" Starting Nginx "
