@@ -30,5 +30,9 @@ cd /tmp && unzip mongodb.zip &>>$LOG_FILE
 StatCheck $?
 
 Print "Load Schema"
-cd mongodb-main && mongo < catalogue.js && mongo < users.js &>>$LOG_FILE
+cd mongodb-main
+for schema in catalogue users ; do
+  echo -e "Load $schema Schema"
+mongo < ${schema}.js &>>$LOG_FILE
 StatCheck $?
+done
