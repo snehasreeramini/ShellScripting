@@ -14,3 +14,16 @@ catalogue:
 
 redis:
 	bash components/redis.sh
+
+rabbitmq:
+	bash components/rabbitmq.sh
+
+payments:
+	bash components/payments.sh
+
+mysql:
+	bash components/mysql.sh
+
+user:
+	bash components/user.sh
+

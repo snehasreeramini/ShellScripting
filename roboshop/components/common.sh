@@ -51,14 +51,14 @@ SERVICE_SETUP(){
 
   Print"Setup Systemd file"
   sed -i -e 's/MONGO_DNSNAME/mongodb.roboshopinternal/' \
-       -e 's/REDIS_ENDPOINT/redis.roboshopinternal' \
-       -e  's/MONGO_ENDPOINT/mongodb.roboshopinternal' \
-       -e  's/CATALOGUE_ENDPOINT/catalogue.roboshopinternal'\
+       -e 's/REDIS_ENDPOINT/redis.roboshopinternal/' \
+       -e  's/MONGO_ENDPOINT/mongodb.roboshopinternal/' \
+       -e  's/CATALOGUE_ENDPOINT/catalogue.roboshopinternal/'\
        -e 's/CARTENDPOINT/cart.roboshopinternal/' \
-       -e 's/DBHOST/mysql.roboshopinternal' \
-       -e 's/CARTHOST/cart.roboshopinternal'\
-       -e 's/USERHOST/user.robobshopinternal'\
-       -e 's/AMQPHOST/rabbitmq.roboshopinternal'\
+       -e 's/DBHOST/mysql.roboshopinternal/' \
+       -e 's/CARTHOST/cart.roboshopinternal/'\
+       -e 's/USERHOST/user.robobshopinternal/'\
+       -e 's/AMQPHOST/rabbitmq.roboshopinternal/'\
   /home/roboshop/${COMPONENT}/systemd.service &>>${LOG_FILE} && mv /home/roboshop/${COMPONENT}/systemd.service /etc/systems/system/${COMPONENT}.service &>>$LOG_FILE
   StatCheck $?
 
