@@ -14,10 +14,13 @@ Print"Start MySQL service"
 systemctl enable mysqld &>>${LOG_FILE} && systemctl start mysqld &>>${LOG_FILE}
 StatCheck $?
 
-echo "SET PASSWORD FOR 'root'@'localhost' =  PASSWORD('RoboShop@1');" >/tmp/rootpass.sql
-
-DEFAULT_ROOT_PASSWORD=$(grep 'tempprary password' /var/log/mysqld.log | awk '{print $NF}')
-mysql -uroot -p"${DEFAULT_ROOT_PASSWORD}" </tmp/rootpass.sql
+echo 'show databases' | mysql -uroot -pRoboshop@1 &>>${LOG_FILE}
+if [$? -ne 0 ]; then
+  print "change Default Root Password"
+  echo "SET PASSWORD FOR 'root'@'localhost' =  PASSWORD('Roboshop@1');" >/tmp/rootpass.sql
+ DEFAULT_ROOT_PASSWORD=$(grep 'tempprary password' /var/log/mysqld.log | awk '{print $NF}')
+mysql --connect-expired-password -uroot -p"${DEFAULT_ROOT_PASSWORD}" </tmp/rootpass.sql &>>${LOG_FILE}
+StatCheck $?
 
 #Setup MySQL Repo
 ## echo '[mysql57-community]
