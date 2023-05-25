@@ -28,7 +28,7 @@ rm -rf frontend-master README.md
 
 Print "Update Roboshop Configuration"&>>${LOG_FILE}
 mv localhost.conf /etc/nginx/default.d/roboshop.conf
-for component in catalogue user cart ; do
+for component in catalogue user cart shipping ; do
   echo -e "Updating $component configuration"
 sed -i -e '${component}/s/localhost/${component}.roboshopinternal/' #SEARCH FOR CATATLOGUE AND SUBSTITUTE CATALOGUE.ROBOSHOPINTERNAL AT CATALOGUE PLACE IN /ETC LOCATION.
 StatCheck $?
