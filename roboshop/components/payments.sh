@@ -2,6 +2,10 @@
 
 source components/common.sh
 
+COMPONENT=payments
+
+PYTHON
+
 Print"Install python"
 Install Python 3 &>>$LOG_FILE
 StatCheck $?

@@ -54,8 +54,11 @@ SERVICE_SETUP(){
        -e 's/REDIS_ENDPOINT/redis.roboshopinternal' \
        -e  's/MONGO_ENDPOINT/mongodb.roboshopinternal' \
        -e  's/CATALOGUE_ENDPOINT/catalogue.roboshopinternal'\
-       -e 's/CARTENDPOINT/cart.roboshop.internal/' \
-       -e 's/DBHOST/mysql.roboshop.internal' \
+       -e 's/CARTENDPOINT/cart.roboshopinternal/' \
+       -e 's/DBHOST/mysql.roboshopinternal' \
+       -e 's/CARTHOST/cart.roboshopinternal'\
+       -e 's/USERHOST/user.robobshopinternal'\
+       -e 's/AMQPHOST/rabbitmq.roboshopinternal'\
   /home/roboshop/${COMPONENT}/systemd.service &>>${LOG_FILE} && mv /home/roboshop/${COMPONENT}/systemd.service /etc/systems/system/${COMPONENT}.service &>>$LOG_FILE
   StatCheck $?
 
@@ -99,3 +102,18 @@ Print"Maven packaging"
 
 SERVICE_SETUP
 }
+
+PYTHON_SETUP(){}
+
+Print"Install python"
+yum install python36 gcc python3-devel -y &>>$LOG_FILE
+StatCheck $?
+
+APP_SETUP
+
+Print "Install python dependencies"
+cd /home/roboshop/${APP_USER}/${COMPONENT} &&
+pip3 install -r requirements.txt &>>$LOG_FILE
+StatCheck $?
+
+SERVICE_SETUP
