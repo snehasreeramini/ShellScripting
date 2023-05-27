@@ -25,7 +25,7 @@ SGID=$(aws ec2 describe-security-groups --filters Name=group-name,Values=Allow-a
 
 if [ "$1" == "all" ]; then
  for component in catalogue cart user redis rabbitmq user payments frontend mongodb mysql ; do
-   COMPONENT=$component
+  COMPONENT=$component
    create_ec2
    done
   else
