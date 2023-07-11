@@ -13,13 +13,13 @@ NODEJS
 #StatCheck $?
 #
 #Print "Download the content"
-#$ curl  -f -s -L -o /tmp/cart.zip "https://github.com/roboshop-devops-project/cart/archive/main.zip" &>>$LOG_FILE
+#$ curl  -f -s -L -o /tmp/b_cart.zip "https://github.com/roboshop-devops-project/cart/archive/main.zip" &>>$LOG_FILE
 #StatCheck $?
 #
 #cd /home/roboshop
 #
 #Print "Extracting archive"
-#unzip /tmp/cart.zip && mv cart-main cart && cd cart &>>$LOG_FILE
+#unzip /tmp/b_cart.zip && mv b_cart-main b_cart && cd b_cart &>>$LOG_FILE
 #
 #Print "install npm"
 #npm install
@@ -27,9 +27,9 @@ NODEJS
 #Now, lets set up the service with systemctl.
 #
 #Print "Update Roboshop Configuration"&>>$LOG_FILE
-#mv /home/roboshop/cart/systemd.service /etc/systemd/system/cart.service
+#mv /home/roboshop/b_cart/systemd.service /etc/systemd/system/b_cart.service
 #
 #
 #Print" Starting Cart "
-#systemctl daemon-reload && systemctl start cart && systemctl enable cart
+#systemctl daemon-reload && systemctl start b_cart && systemctl enable b_cart
 #StatCheck $?
