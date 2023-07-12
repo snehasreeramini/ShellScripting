@@ -5,7 +5,7 @@ COMPONENT=cart
 
 NODEJS
 #Print "Install required software" &>>$LOG_FILE
-#yum install nodejs make gcc-c++ -y
+#yum install angularjs make gcc-c++ -y
 #StatCheck $?
 #
 #Print "Add user"&>>$LOG_FILE

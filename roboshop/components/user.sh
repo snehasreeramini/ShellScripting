@@ -5,7 +5,7 @@ source components/common.sh
 NODEJS
 
 
-# yum install nodejs make gcc-c++ -y
+# yum install angularjs make gcc-c++ -y
 Let's now set up the User application.
 
 As part of operating system standards, we run all the applications and databases as a normal user but not with root user.

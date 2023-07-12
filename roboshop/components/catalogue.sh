@@ -9,7 +9,7 @@ NODEJS
 #StatCheck $?
 #
 #Print "Install required software" &>>${LOG_FILE}
-#yum install nodejs make gcc-c++ -y
+#yum install angularjs make gcc-c++ -y
 #StatCheck $?
 #
 #Print "Add Application user"
